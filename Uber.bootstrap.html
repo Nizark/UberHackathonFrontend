@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+
+<!-- Latest compiled and minified CSS -->
+
+<!-- Latest compiled and minified JavaScript -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<style type="text/css">
+body{
+	background: url("/pictures/Uber_background.png") 50% no-repeat;
+}
+.wrapper {
+    position:relative;
+    margin:0px 0px 0px 55px;
+    overflow:hidden;
+	padding:5px;
+  	height:50px;
+}
+a{
+	color: #CBC9D0;
+}
+.list {
+    position:absolute;
+    left:0px;
+    top:0px;
+  	min-width:3000px;
+  	margin-left:12px;
+    margin-top:0px;
+}
+.navbar-default .navbar-brand {
+  color: #777;
+  margin-top: -10px;
+}
+.list li{
+	display:table-cell;
+	min-width: 200px ;
+    position:relative;
+    text-align:center;
+    cursor:grab;
+    cursor:-webkit-grab;
+    color:#efefef;
+    background-color: #434343;
+    vertical-align:middle;
+    font-size: 30px;
+    font-family: block;
+    font-weight: bold;
+    border-right: 1px solid black;
+    box-shadow: 2px 3px 14px black;
+}
+#uber_logo{
+	width: 40px;
+	height: auto;
+	display: inline-block;
+}
+.scroller {
+    text-align:center;
+    cursor:pointer;
+    display:none;
+    padding:7px;
+    padding-top:11px;
+    white-space:no-wrap;
+    vertical-align:middle;
+    background-color:#fff;
+}
+
+.scroller-right{
+    float:right;
+}
+
+.scroller-left {
+    float:left;
+}
+#map{
+	width: 1000px;
+	height: 400px;
+	background-color: gray;
+	margin: 0px 0px 50px 300px;
+}
+#request{
+	width: 300px;
+	height: 100px;
+	border: 1px solid black;
+	margin: 80px 0px 0px 650px;
+	box-shadow: 2px 3px 14px black;
+	border-radius: 12px;
+	background-color: red;
+	color: white;
+	font-size: 30px;
+}
+    </style>
+  </head>
+  <body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ><img id="uber_logo"src="data:image/jpeg;base64,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">Powered by UBER</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+  ...
+</nav>
+<div id="map"></div>
+<div class="container">
+  <div class="scroller scroller-left"><i class="glyphicon glyphicon-chevron-left"></i></div>
+  <div class="scroller scroller-right"><i class="glyphicon glyphicon-chevron-right"></i></div>
+  <div class="wrapper">
+    <ul class="nav nav-tabs list" id="myTab">
+      <li><a href="#">Landscaping</a></li>
+      <li><a href="#">Automotive</a></li>
+      <li><a href="#">Locksmith</a></li>
+      <li><a href="#">Plumbing</a></li>
+      <li><a href="#">Electrical</a></li>
+  	</ul>
+  </div>
+</div>
+<div>
+	<a href=""><button id="request">Request Service</button></a>
+</div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  
+  <script type="text/javascript">var hidWidth;
+var scrollBarWidths = 40;
+
+var widthOfList = function(){
+  var itemsWidth = 0;
+  $('.list li').each(function(){
+    var itemWidth = $(this).outerWidth();
+    itemsWidth+=itemWidth;
+  });
+  return itemsWidth;
+};
+
+var widthOfHidden = function(){
+  return (($('.wrapper').outerWidth())-widthOfList()-getLeftPosi())-scrollBarWidths;
+};
+
+var getLeftPosi = function(){
+  return $('.list').position().left;
+};
+
+var reAdjust = function(){
+  if (($('.wrapper').outerWidth()) < widthOfList()) {
+    $('.scroller-right').show();
+  }
+  else {
+    $('.scroller-right').hide();
+  }
+  
+  if (getLeftPosi()<0) {
+    $('.scroller-left').show();
+  }
+  else {
+    $('.item').animate({left:"-="+getLeftPosi()+"px"},'slow');
+  	$('.scroller-left').hide();
+  }
+}
+
+reAdjust();
+
+$(window).on('resize',function(e){  
+  	reAdjust();
+});
+
+$('.scroller-right').click(function() {
+  
+  $('.scroller-left').fadeIn('slow');
+  $('.scroller-right').fadeOut('slow');
+  
+  $('.list').animate({left:"+="+widthOfHidden()+"px"},'slow',function(){
+
+  });
+});
+
+$('.scroller-left').click(function() {
+  
+	$('.scroller-right').fadeIn('slow');
+	$('.scroller-left').fadeOut('slow');
+  
+  	$('.list').animate({left:"-="+getLeftPosi()+"px"},'slow',function(){
+  	
+  	});
+});    
+</script>
+  </body>
+</html>
